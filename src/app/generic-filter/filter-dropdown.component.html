@@ -1,1 +1,17 @@
-<h2>It's working</h2>
+<mat-form-field class="dropdown-mat-form filter-dropdown">
+  <mat-select 
+    placeholder="Select"
+    multiple  
+  >
+    <mat-select-trigger>
+    </mat-select-trigger>
+    <div class="filter-input-div">
+      <input matInput placeholder="Search" class="filter-input-form">
+      <mat-icon class="input-icon">search</mat-icon>
+    </div>
+    <div class="select-all-container">
+      <mat-slide-toggle></mat-slide-toggle>
+    </div>
+    <mat-option></mat-option>
+  </mat-select>
+</mat-form-field>

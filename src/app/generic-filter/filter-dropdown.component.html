@@ -7,14 +7,14 @@
     [compareWith]="compareObjects" 
   >
     <div class="filter-input-div">
-      <input matInput (keyup)="applySearch($event)" placeholder="Search" class="filter-input-form">
+      <input matInput (keyup)="applySearch($event)" placeholder="Search" [(ngModel)]="filterValue" class="filter-input-form">
       <mat-icon class="input-icon">search</mat-icon>
     </div>
     <div class="select-all-wrapper">
       <span class="select-all-text">Select all {{label}}s</span>
       <mat-slide-toggle (change)="selectAllToggle($event)" [checked]="selectAll"></mat-slide-toggle>
     </div>
-    <mat-option *ngFor="let item of searchableData" [value]="item.value">
+    <mat-option *ngFor="let item of searchableData" [value]="item">
       {{item.value}}
     </mat-option>
   </mat-select>

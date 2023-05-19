@@ -1,17 +1,20 @@
-<mat-form-field class="dropdown-mat-form filter-dropdown">
+<mat-form-field class="dropdown-wrapper">
+  <mat-label>Select {{label}}s</mat-label>
   <mat-select 
-    placeholder="Select"
-    multiple  
+    multiple
+    (selectionChange)="selectionChange($event.value)" 
+    [compareWith]="compareObjects" 
   >
-    <mat-select-trigger>
-    </mat-select-trigger>
     <div class="filter-input-div">
-      <input matInput placeholder="Search" class="filter-input-form">
+      <input matInput (keyup)="applySearch($event)" placeholder="Search" class="filter-input-form">
       <mat-icon class="input-icon">search</mat-icon>
     </div>
-    <div class="select-all-container">
-      <mat-slide-toggle></mat-slide-toggle>
+    <div class="select-all-wrapper">
+      <span class="select-all-text">Select all {{label}}s</span>
+      <mat-slide-toggle (change)="selectAllToggle($event)" [checked]="selectAll"></mat-slide-toggle>
     </div>
-    <mat-option></mat-option>
+    <mat-option *ngFor="let item of searchableData" [value]="item.value">
+      {{item.value}}
+    </mat-option>
   </mat-select>
 </mat-form-field>

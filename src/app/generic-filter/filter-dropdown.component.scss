@@ -1,19 +1,24 @@
-.dropdown-mat-form {
-  height: 50px;
-	margin: 0 20px 20px 0;
-  padding: 0 4px 0 4px;
-  background: red;
-  border-radius: 4px;
+:host ::ng-deep .dropdown-wrapper .mat-mdc-text-field-wrapper {
+	border-radius: 28px;
+}
+
+.select-all-wrapper {
+  padding: 0 16px 16px 16px;
+}
+
+.select-all-text {
+	font-size: 14px;
+	margin-right: 6px;
 }
 
 .filter-input-div {
-  height: 10px;
+  height: 24px;
   display: flex;
   align-items: center;
   padding: 4px 16px;
   margin: 15px;
   border-radius: 4px;
-  border: 1px solid gray;
+  border: 1px solid blue;
   flex-grow: 100;
 }
 
@@ -21,4 +26,9 @@
   width: 100%;
   border: 0;
   font-size: 14px;
+}
+
+input:focus {
+	border: 0;
+	outline: 0;
 }

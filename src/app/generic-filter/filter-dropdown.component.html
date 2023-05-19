@@ -2,6 +2,7 @@
   <mat-label>Select {{label}}s</mat-label>
   <mat-select 
     multiple
+    [(ngModel)]="displayedOptions"
     (selectionChange)="selectionChange($event.value)" 
     [compareWith]="compareObjects" 
   >

@@ -15,12 +15,16 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() dataset: KeyValue<string, string>[] = [];
   @Input() searchOnly: boolean = false;
+  @Input() icon: string = '';
+  @Input() limit: number = Number.MAX_VALUE;
+  @Input() showBadge: boolean = false;
 
 	public searchableData: KeyValue<string, string>[] = [];
 	public filterValue: string = '';
 	public selectAll: boolean = false;
 	public selectedOptions: KeyValue<string, string>[] = [];
 	public displayedOptions: KeyValue<string, string>[] = [];
+  public  NUM_MAX_VALUE = Number.MAX_VALUE;
 
 	private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -43,7 +47,6 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 
 	public selectAllToggle(event: MatSlideToggleChange) {
     this.selectAll = event.checked;
-		console.log(this.selectAll)
     if (this.selectAll) {
       this.selectedOptions = [...this.dataset];
       this.displayedOptions = [...this.dataset];
@@ -79,6 +82,30 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     }
 
     this.selectAll = this.dataset.length === this.selectedOptions.length;
+  }
+
+  public isSelected(option: KeyValue<string, string>): boolean {
+    return _.includes(_.map(this.selectedOptions, so => so.key), option.key);
+  }
+
+  public selectMenuItem(item: KeyValue<string, string>, event: any) {
+    event.stopPropagation();
+
+    if (this.isSelected(item)) {
+      const index = _.indexOf(_.map(this.selectedOptions, so => so.key), item.key);
+      _.pullAt(this.selectedOptions, index);
+    } else {
+      this.selectedOptions.push(item);
+    }
+
+    this.selectAll = this.dataset.length === this.selectedOptions.length;
+  }
+
+  public menuOpened() {
+    if (this.limit && this.limit !== this.NUM_MAX_VALUE) {
+      this.dataset = this.dataset;
+      this.searchableData = this.dataset;
+    }
   }
 
 	public compareObjects(o1: KeyValue<string, string>, o2?: KeyValue<string, string>): boolean {

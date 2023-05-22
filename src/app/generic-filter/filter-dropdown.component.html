@@ -1,5 +1,6 @@
 <div *ngIf="searchOnly"><ng-container *ngTemplateOutlet="searchOnlyStyle"></ng-container></div>
-<div *ngIf="!searchOnly"><ng-container *ngTemplateOutlet="searchAndSelectStyle"></ng-container></div>
+<div *ngIf="!searchOnly && icon === ''"><ng-container *ngTemplateOutlet="searchAndSelectStyle"></ng-container></div>
+<div *ngIf="icon !== ''"><ng-container *ngTemplateOutlet="buttonDropdownStyle"></ng-container></div>
 
 <ng-template #searchOnlyStyle>
   <mat-form-field class="dropdown-wrapper">
@@ -43,4 +44,36 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+</ng-template>
+
+<ng-template #buttonDropdownStyle>
+  <button [matMenuTriggerFor]="filterMenu" (menuOpened)="menuOpened()" class="clickable">
+    <div class="filter-button">
+      <mat-icon>{{icon}}</mat-icon>
+      <div class="active-filter-badge" *ngIf="showBadge && selectedOptions.length > 0">{{selectedOptions.length}}</div>
+    </div>
+  </button>
+  <mat-menu #filterMenu="matMenu">
+    <div class="filter-input-div" (click)="$event.stopPropagation();">
+      <input matInput (keyup)="applySearch($event)" [(ngModel)]="filterValue" placeholder="Search">
+      <mat-icon *ngIf="filterValue.length === 0" class="input-icon">search</mat-icon>
+      <mat-icon *ngIf="filterValue.length > 0" (keyup)="applySearch($event)" class="input-icon clickable">close</mat-icon>
+    </div>
+    <div class="select-all-wrapper" *ngIf="filterValue === '' && limit === NUM_MAX_VALUE">
+      <span class="select-all-text">Select all {{ label }}s</span>
+      <mat-slide-toggle (click)="$event.stopPropagation();" (change)="selectAllToggle($event)" [checked]="selectAll"></mat-slide-toggle>
+    </div>
+    <div *ngFor="let dropdownOption of searchableData" [matTooltip]="(selectedOptions.length >= limit && !isSelected(dropdownOption)) ? 'You can select up to five options' : ''">
+      <button
+        [disabled]="selectedOptions.length >= limit && !isSelected(dropdownOption)" 
+        [class.selected]="isSelected(dropdownOption)" 
+        class="mat-menu-item check-wrapper"
+        [value]="dropdownOption" 
+        (click)="selectMenuItem(dropdownOption, $event)">
+        <mat-icon class="empty">check_box_outline_blank</mat-icon>
+        <mat-icon class="checked">check_box</mat-icon> 
+        <span class="dropdown-option-text">{{ dropdownOption.value }}</span>
+      </button>
+    </div>
+  </mat-menu>
 </ng-template>

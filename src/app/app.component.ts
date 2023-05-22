@@ -23,4 +23,11 @@ export class AppComponent {
 		{key: 'berlioz', value: 'Berlioz'},
 		{key: 'bruckner', value: 'Bruckner'}
 	];
+  public citiesDataset: KeyValue<string, string>[] = [
+		{key: 'denver', value: 'Denver'},
+		{key: 'chicago', value: 'Chicago'},
+		{key: 'bloomington', value: 'Bloomington'},
+		{key: 'saintLouis', value: 'Saint Louis'},
+		{key: 'sanFrancisco', value: 'San Francisco'}
+	];
 }

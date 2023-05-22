@@ -14,6 +14,13 @@ export class AppComponent {
 		{key: 'banana', value: 'Banana'},
 		{key: 'pretzels', value: 'Pretzels'},
 		{key: 'almonds', value: 'Almonds'},
-		{key: 'iceCrea,', value: 'Ice Cream'}
+		{key: 'iceCream,', value: 'Ice Cream'}
+	];
+  public composersDataset: KeyValue<string, string>[] = [
+		{key: 'mahler', value: 'Mahler'},
+		{key: 'strauss', value: 'Strauss'},
+		{key: 'wagner', value: 'Wagner'},
+		{key: 'berlioz', value: 'Berlioz'},
+		{key: 'bruckner', value: 'Bruckner'}
 	];
 }

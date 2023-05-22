@@ -14,6 +14,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 export class FilterDropdownComponent implements OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() dataset: KeyValue<string, string>[] = [];
+  @Input() searchOnly: boolean = false;
 
 	public searchableData: KeyValue<string, string>[] = [];
 	public filterValue: string = '';

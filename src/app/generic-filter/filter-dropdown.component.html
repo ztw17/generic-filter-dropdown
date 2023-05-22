@@ -1,21 +1,46 @@
-<mat-form-field class="dropdown-wrapper">
-  <mat-label>Select {{label}}s</mat-label>
-  <mat-select 
-    multiple
-    [(ngModel)]="displayedOptions"
-    (selectionChange)="selectionChange($event.value)" 
-    [compareWith]="compareObjects" 
-  >
-    <div class="filter-input-div">
-      <input matInput (keyup)="applySearch($event)" placeholder="Search" [(ngModel)]="filterValue" class="filter-input-form">
-      <mat-icon class="input-icon">search</mat-icon>
-    </div>
-    <div class="select-all-wrapper">
-      <span class="select-all-text">Select all {{label}}s</span>
-      <mat-slide-toggle (change)="selectAllToggle($event)" [checked]="selectAll"></mat-slide-toggle>
-    </div>
-    <mat-option *ngFor="let item of searchableData" [value]="item">
-      {{item.value}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div *ngIf="searchOnly"><ng-container *ngTemplateOutlet="searchOnlyStyle"></ng-container></div>
+<div *ngIf="!searchOnly"><ng-container *ngTemplateOutlet="searchAndSelectStyle"></ng-container></div>
+
+<ng-template #searchOnlyStyle>
+  <mat-form-field class="dropdown-wrapper">
+    <mat-label>Select {{label}}s</mat-label>
+    <mat-select 
+      multiple
+      [(ngModel)]="displayedOptions"
+      (selectionChange)="selectionChange($event.value)" 
+      [compareWith]="compareObjects" 
+    >
+      <div class="filter-input-div">
+        <input matInput (keyup)="applySearch($event)" placeholder="Search" [(ngModel)]="filterValue" class="filter-input-form">
+        <mat-icon class="input-icon">search</mat-icon>
+      </div>
+      <mat-option *ngFor="let item of searchableData" [value]="item">
+        {{item.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>
+
+<ng-template #searchAndSelectStyle>
+  <mat-form-field class="dropdown-wrapper">
+    <mat-label>Select {{label}}s</mat-label>
+    <mat-select 
+      multiple
+      [(ngModel)]="displayedOptions"
+      (selectionChange)="selectionChange($event.value)" 
+      [compareWith]="compareObjects" 
+    >
+      <div class="filter-input-div">
+        <input matInput (keyup)="applySearch($event)" placeholder="Search" [(ngModel)]="filterValue" class="filter-input-form">
+        <mat-icon class="input-icon">search</mat-icon>
+      </div>
+      <div class="select-all-wrapper">
+        <span class="select-all-text">Select all {{label}}s</span>
+        <mat-slide-toggle (change)="selectAllToggle($event)" [checked]="selectAll"></mat-slide-toggle>
+      </div>
+      <mat-option *ngFor="let item of searchableData" [value]="item">
+        {{item.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>

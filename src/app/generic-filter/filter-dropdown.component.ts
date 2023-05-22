@@ -12,14 +12,9 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 })
 
 export class FilterDropdownComponent implements OnInit, OnDestroy {
-	public testData: KeyValue<string, string>[] = [
-		{key: 'test0', value: 'Test0'},
-		{key: 'test1', value: 'Test1'},
-		{key: 'test2', value: 'Test2'},
-		{key: 'test3', value: 'Test3'},
-		{key: 'test4', value: 'Test4'}
-	];
-	public label: string = 'Option';
+  @Input() label: string = '';
+  @Input() dataset: KeyValue<string, string>[] = [];
+
 	public searchableData: KeyValue<string, string>[] = [];
 	public filterValue: string = '';
 	public selectAll: boolean = false;
@@ -31,7 +26,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 	constructor() { }
     
 	ngOnInit() {
-		this.searchableData = this.testData;
+		this.searchableData = this.dataset;
 	}
 
 	ngOnDestroy(): void {
@@ -42,15 +37,15 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 	public applySearch(event: KeyboardEvent) {
 		const target = event.target as HTMLInputElement;
     this.filterValue = _.toLower(_.trimStart(target?.value));
-    this.searchableData = _.filter([...this.testData], data => _.includes(_.toLower(data.value), this.filterValue));
+    this.searchableData = _.filter([...this.dataset], data => _.includes(_.toLower(data.value), this.filterValue));
   }
 
 	public selectAllToggle(event: MatSlideToggleChange) {
     this.selectAll = event.checked;
 		console.log(this.selectAll)
     if (this.selectAll) {
-      this.selectedOptions = [...this.testData];
-      this.displayedOptions = [...this.testData];
+      this.selectedOptions = [...this.dataset];
+      this.displayedOptions = [...this.dataset];
     } else {
       this.selectedOptions = [];
       this.displayedOptions = [];
@@ -61,7 +56,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     if (this.filterValue.length !== 0) {
       const checkedItems: KeyValue<string, string>[] = [];
 
-      _.each(this.testData, data => {
+      _.each(this.dataset, data => {
 
         const isCurrentlyDisplayed: boolean = !!_.find(this.searchableData, sd => this.isKeyValueEqual(sd, data));
         if (isCurrentlyDisplayed) {
@@ -82,7 +77,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
       this.displayedOptions = values;
     }
 
-    this.selectAll = this.testData.length === this.selectedOptions.length;
+    this.selectAll = this.dataset.length === this.selectedOptions.length;
   }
 
 	public compareObjects(o1: KeyValue<string, string>, o2?: KeyValue<string, string>): boolean {

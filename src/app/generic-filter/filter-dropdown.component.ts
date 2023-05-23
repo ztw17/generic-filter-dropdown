@@ -45,6 +45,11 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     this.searchableData = _.filter([...this.dataset], data => _.includes(_.toLower(data.value), this.filterValue));
   }
 
+  public clearSearch(input: string) {
+    this.filterValue = _.toLower(_.trimStart(input));
+    this.searchableData = _.filter([...this.dataset], data => _.includes(_.toLower(data.value), this.filterValue));
+  }
+
 	public selectAllToggle(event: MatSlideToggleChange) {
     this.selectAll = event.checked;
     if (this.selectAll) {

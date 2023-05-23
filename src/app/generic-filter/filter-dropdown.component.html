@@ -9,6 +9,7 @@
       multiple
       [(ngModel)]="displayedOptions"
       (selectionChange)="selectionChange($event.value)" 
+      (openedChange)="clearSearch('')"
       [compareWith]="compareObjects" 
     >
       <div class="filter-input-div">
@@ -29,6 +30,7 @@
       multiple
       [(ngModel)]="displayedOptions"
       (selectionChange)="selectionChange($event.value)" 
+      (openedChange)="clearSearch('')"
       [compareWith]="compareObjects" 
     >
       <div class="filter-input-div">
@@ -55,7 +57,7 @@
   </button>
   <mat-menu #filterMenu="matMenu">
     <div class="filter-input-div" (click)="$event.stopPropagation();">
-      <input matInput (keyup)="applySearch($event)" [(ngModel)]="filterValue" placeholder="Search">
+      <input matInput (keyup)="clearSearch('')" [(ngModel)]="filterValue" placeholder="Search">
       <mat-icon *ngIf="filterValue.length === 0" class="input-icon">search</mat-icon>
       <mat-icon *ngIf="filterValue.length > 0" (keyup)="applySearch($event)" class="input-icon clickable">close</mat-icon>
     </div>

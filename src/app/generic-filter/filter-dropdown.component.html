@@ -57,9 +57,9 @@
   </button>
   <mat-menu #filterMenu="matMenu">
     <div class="filter-input-div" (click)="$event.stopPropagation();">
-      <input matInput (keyup)="clearSearch('')" [(ngModel)]="filterValue" placeholder="Search">
+      <input matInput (keyup)="applySearch($event)" [(ngModel)]="filterValue" placeholder="Search">
       <mat-icon *ngIf="filterValue.length === 0" class="input-icon">search</mat-icon>
-      <mat-icon *ngIf="filterValue.length > 0" (keyup)="applySearch($event)" class="input-icon clickable">close</mat-icon>
+      <mat-icon *ngIf="filterValue.length > 0" (click)="clearSearch('')" class="input-icon clickable">close</mat-icon>
     </div>
     <div class="select-all-wrapper" *ngIf="filterValue === '' && limit === NUM_MAX_VALUE">
       <span class="select-all-text">Select all {{ label }}s</span>

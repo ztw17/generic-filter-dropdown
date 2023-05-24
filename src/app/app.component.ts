@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'generic-filter-dropdown';
+  title = 'filter-dropdown';
 
   public foodsDataset: KeyValue<string, string>[] = [
 		{key: 'apple', value: 'Apple'},
@@ -30,4 +30,8 @@ export class AppComponent {
 		{key: 'saintLouis', value: 'Saint Louis'},
 		{key: 'sanFrancisco', value: 'San Francisco'}
 	];
+
+	public updateSelectedItems(data: any) {
+		console.log(data)
+	}
 }

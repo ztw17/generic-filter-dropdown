@@ -3,6 +3,7 @@
     <filter-dropdown 
       label="food"
       [dataset]="foodsDataset"
+      (dropdownSelectionChange)="updateSelectedItems($event)"
       class="dropdown-wrapper"
     >
     </filter-dropdown>
@@ -26,6 +27,7 @@
       [dataset]="citiesDataset"
       icon="location_city"
       [showBadge]="true"
+      [limit]="3"
       class="dropdown-wrapper"
     >
     </filter-dropdown>

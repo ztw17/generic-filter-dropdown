@@ -1,7 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
@@ -12,6 +11,8 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 })
 
 export class FilterDropdownComponent implements OnInit, OnDestroy {
+  @Output() dropdownSelectionChange: EventEmitter<KeyValue<string, string>[]> = new EventEmitter<KeyValue<string, string>[]>();
+  
   @Input() label: string = '';
   @Input() dataset: KeyValue<string, string>[] = [];
   @Input() searchOnly: boolean = false;
@@ -24,7 +25,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 	public selectAll: boolean = false;
 	public selectedOptions: KeyValue<string, string>[] = [];
 	public displayedOptions: KeyValue<string, string>[] = [];
-  public  NUM_MAX_VALUE = Number.MAX_VALUE;
+  public NUM_MAX_VALUE = Number.MAX_VALUE;
 
 	private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -59,6 +60,8 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
       this.selectedOptions = [];
       this.displayedOptions = [];
     }
+
+    this.dropdownSelectionChange.emit(this.selectedOptions);
   }
 
 	public selectionChange(values: KeyValue<string, string>[]) {
@@ -86,6 +89,8 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
       this.displayedOptions = values;
     }
 
+    this.dropdownSelectionChange.emit(this.selectedOptions);
+
     this.selectAll = this.dataset.length === this.selectedOptions.length;
   }
 
@@ -102,6 +107,8 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     } else {
       this.selectedOptions.push(item);
     }
+
+    this.dropdownSelectionChange.emit(this.selectedOptions);
 
     this.selectAll = this.dataset.length === this.selectedOptions.length;
   }

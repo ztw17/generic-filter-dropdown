@@ -1,35 +1,66 @@
 <div class="parent-container">
   <div class="dropdowns-container">
-    <filter-dropdown 
-      label="food"
-      [dataset]="foodsDataset"
-      (dropdownSelectionChange)="updateSelectedItems($event)"
-      class="dropdown-wrapper"
-    >
-    </filter-dropdown>
-    <filter-dropdown 
-      label="composer"
-      [dataset]="composersDataset"
-      [searchOnly]="true"
-      class="dropdown-wrapper"
-    >
-    </filter-dropdown>
-    <filter-dropdown 
-      label="composer"
-      [dataset]="composersDataset"
-      icon="library_music"
-      [showBadge]="true"
-      class="dropdown-wrapper"
-    >
-    </filter-dropdown>
-    <filter-dropdown 
-      label="city"
-      [dataset]="citiesDataset"
-      icon="location_city"
-      [showBadge]="true"
-      [limit]="3"
-      class="dropdown-wrapper"
-    >
-    </filter-dropdown>
+    <div class="dropdown-wrapper">
+      <filter-dropdown 
+        label="food"
+        [dataset]="foodsDataset"
+        (dropdownSelectionChange)="updateSelectedItemsOne($event)">
+      </filter-dropdown>
+      <div>
+        <mat-chip-listbox>
+          <div *ngFor="let option of firstOptions">
+            <mat-chip>{{option.value}}</mat-chip>
+          </div>
+        </mat-chip-listbox>
+      </div>
+    </div>
+    <div class="dropdown-wrapper">
+      <filter-dropdown 
+        label="composer"
+        [dataset]="composersDataset"
+        [searchOnly]="true"
+        (dropdownSelectionChange)="updateSelectedItemsTwo($event)">
+      </filter-dropdown>
+      <div>
+        <mat-chip-listbox>
+          <div *ngFor="let option of secondOptions">
+            <mat-chip>{{option.value}}</mat-chip>
+          </div>
+        </mat-chip-listbox>
+      </div>
+    </div>
+    <div class="dropdown-wrapper">
+      <filter-dropdown 
+        label="composer"
+        [dataset]="composersDataset"
+        icon="library_music"
+        [showBadge]="true"
+        (dropdownSelectionChange)="updateSelectedItemsThree($event)">
+      </filter-dropdown>
+      <div>
+        <mat-chip-listbox>
+          <div *ngFor="let option of thirdOptions">
+            <mat-chip>{{option.value}}</mat-chip>
+          </div>
+        </mat-chip-listbox>
+      </div>
+    </div>
+    <div class="dropdown-wrapper">
+      <filter-dropdown 
+        label="city"
+        [dataset]="citiesDataset"
+        icon="location_city"
+        [showBadge]="true"
+        [limit]="3"
+        (dropdownSelectionChange)="updateSelectedItemsFour($event)">
+      </filter-dropdown>
+      <div>
+        <mat-chip-listbox>
+          <div *ngFor="let option of fourthOptions">
+            <mat-chip>{{option.value}}</mat-chip>
+          </div>
+        </mat-chip-listbox>
+      </div>
+    </div>
   </div>
 </div>

@@ -3,6 +3,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { FormControl } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'filter-dropdown',
@@ -26,6 +28,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 	public selectedOptions: KeyValue<string, string>[] = [];
 	public displayedOptions: KeyValue<string, string>[] = [];
   public NUM_MAX_VALUE = Number.MAX_VALUE;
+  // public colorControl = new FormControl('primary' as ThemePalette);
 
 	private unsubscribe$: Subject<void> = new Subject<void>();
 

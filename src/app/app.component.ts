@@ -8,7 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'filter-dropdown';
-
+	public firstOptions: KeyValue<string, string>[] = [];
+	public secondOptions: KeyValue<string, string>[] = [];
+	public thirdOptions: KeyValue<string, string>[] = [];
+	public fourthOptions: KeyValue<string, string>[] = [];
   public foodsDataset: KeyValue<string, string>[] = [
 		{key: 'apple', value: 'Apple'},
 		{key: 'banana', value: 'Banana'},
@@ -31,7 +34,19 @@ export class AppComponent {
 		{key: 'sanFrancisco', value: 'San Francisco'}
 	];
 
-	public updateSelectedItems(data: any) {
-		console.log(data)
+	public updateSelectedItemsOne(options: KeyValue<string, string>[]) {
+		this.firstOptions = options;
+	}
+
+	public updateSelectedItemsTwo(options: KeyValue<string, string>[]) {
+		this.secondOptions = options;
+	}
+
+	public updateSelectedItemsThree(options: KeyValue<string, string>[]) {
+		this.thirdOptions = options;
+	}
+
+	public updateSelectedItemsFour(options: KeyValue<string, string>[]) {
+		this.fourthOptions = options;
 	}
 }

@@ -65,15 +65,15 @@
       <span class="select-all-text">Select all {{ label }}s</span>
       <mat-slide-toggle (click)="$event.stopPropagation();" (change)="selectAllToggle($event)" [checked]="selectAll"></mat-slide-toggle>
     </div>
-    <div *ngFor="let dropdownOption of searchableData" [matTooltip]="(selectedOptions.length >= limit && !isSelected(dropdownOption)) ? 'You can select up to five options' : ''">
+    <div *ngFor="let dropdownOption of searchableData" [matTooltip]="(selectedOptions.length >= limit && !isSelected(dropdownOption)) ? 'You can select up to three options' : ''">
       <button
         [disabled]="selectedOptions.length >= limit && !isSelected(dropdownOption)" 
         [class.selected]="isSelected(dropdownOption)" 
         class="mat-menu-item check-wrapper"
         [value]="dropdownOption" 
         (click)="selectMenuItem(dropdownOption, $event)">
-        <mat-icon class="empty">check_box_outline_blank</mat-icon>
-        <mat-icon class="checked">check_box</mat-icon> 
+        <mat-icon class="empty checkbox-color">check_box_outline_blank</mat-icon>
+        <mat-icon class="checked checkbox-color">check_box</mat-icon> 
         <span class="dropdown-option-text">{{ dropdownOption.value }}</span>
       </button>
     </div>

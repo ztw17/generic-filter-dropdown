@@ -1,7 +1,7 @@
 .parent-container {
   height: 100vh;
 	width: 100vw;
-	background-color: darkblue;
+	background-color: #FAFAFA;
 }
 
 .dropdowns-container {
@@ -13,4 +13,5 @@
 
 .dropdown-wrapper {
 	margin: 0 12px;
+	max-width: 230px;
 }

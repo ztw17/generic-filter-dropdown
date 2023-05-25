@@ -6,7 +6,7 @@
         [dataset]="foodsDataset"
         (dropdownSelectionChange)="updateSelectedItemsOne($event)">
       </filter-dropdown>
-      <div>
+      <div class="chips-container">
         <mat-chip-listbox>
           <div *ngFor="let option of firstOptions">
             <mat-chip>{{option.value}}</mat-chip>
@@ -21,7 +21,7 @@
         [searchOnly]="true"
         (dropdownSelectionChange)="updateSelectedItemsTwo($event)">
       </filter-dropdown>
-      <div>
+      <div class="chips-container">
         <mat-chip-listbox>
           <div *ngFor="let option of secondOptions">
             <mat-chip>{{option.value}}</mat-chip>
@@ -31,13 +31,14 @@
     </div>
     <div class="dropdown-wrapper">
       <filter-dropdown 
-        label="composer"
-        [dataset]="composersDataset"
+        label="genre"
+        [dataset]="musicGenresDataset"
         icon="library_music"
         [showBadge]="true"
-        (dropdownSelectionChange)="updateSelectedItemsThree($event)">
+        (dropdownSelectionChange)="updateSelectedItemsThree($event)"
+        class="button-dropdown">
       </filter-dropdown>
-      <div>
+      <div class="chips-container-margin">
         <mat-chip-listbox>
           <div *ngFor="let option of thirdOptions">
             <mat-chip>{{option.value}}</mat-chip>
@@ -52,9 +53,20 @@
         icon="location_city"
         [showBadge]="true"
         [limit]="3"
-        (dropdownSelectionChange)="updateSelectedItemsFour($event)">
+        (dropdownSelectionChange)="updateSelectedItemsFour($event)"
+        class="button-dropdown">
       </filter-dropdown>
-      <div>
+      <!-- <div class="chips-container-margin">
+        <mat-chip-grid>
+          <mat-chip-row *ngFor="let option of fourthOptions" (removed)="remove(option)">
+            {{option.value}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+      </div> -->
+      <div class="chips-container-margin">
         <mat-chip-listbox>
           <div *ngFor="let option of fourthOptions">
             <mat-chip>{{option.value}}</mat-chip>

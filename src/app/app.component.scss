@@ -14,4 +14,18 @@
 .dropdown-wrapper {
 	margin: 0 12px;
 	max-width: 230px;
+	height: 25%;
+}
+
+.button-dropdown {
+	display: flex;
+	justify-content: center;
+}
+
+:host ::ng-deep .mat-mdc-chip-set .mdc-evolution-chip-set__chips {
+	justify-content: center;
+}
+
+.chips-container-margin {
+	margin-top: 22px;
 }

@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { FormControl } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
+// import { FormControl } from '@angular/forms';
+// import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'filter-dropdown',

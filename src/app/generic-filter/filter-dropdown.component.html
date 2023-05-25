@@ -49,9 +49,9 @@
 </ng-template>
 
 <ng-template #buttonDropdownStyle>
-  <button [matMenuTriggerFor]="filterMenu" (menuOpened)="menuOpened()" class="button-margin clickable">
+  <button [matMenuTriggerFor]="filterMenu" (menuOpened)="menuOpened()" class="dropdown-trigger-button clickable">
     <div class="filter-button">
-      <mat-icon>{{icon}}</mat-icon>
+      <mat-icon class="button-icon">{{icon}}</mat-icon>
       <div class="active-filter-badge" *ngIf="showBadge && selectedOptions.length > 0">{{selectedOptions.length}}</div>
     </div>
   </button>

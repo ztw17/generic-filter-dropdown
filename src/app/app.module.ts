@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { MatChipsModule } from '@angular/material/chips';
     FormsModule,
     MatMenuModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

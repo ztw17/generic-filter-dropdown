@@ -24,7 +24,7 @@
 </ng-template>
 
 <ng-template #searchAndSelectStyle>
-  <mat-form-field class="dropdown-wrapper">
+  <mat-form-field class="dropdown-wrapper" *ngIf="label !== ''">
     <mat-label>Select {{label}}s</mat-label>
     <mat-select 
       multiple
@@ -49,13 +49,13 @@
 </ng-template>
 
 <ng-template #buttonDropdownStyle>
-  <button [matMenuTriggerFor]="filterMenu" (menuOpened)="menuOpened()" class="dropdown-trigger-button clickable">
+  <button [matMenuTriggerFor]="filterMenu" (menuOpened)="menuOpened()" class="dropdown-trigger-button clickable"  *ngIf="label !== ''">
     <div class="filter-button">
       <mat-icon class="button-icon">{{icon}}</mat-icon>
       <div class="active-filter-badge" *ngIf="showBadge && selectedOptions.length > 0">{{selectedOptions.length}}</div>
     </div>
   </button>
-  <mat-menu #filterMenu="matMenu">
+  <mat-menu #filterMenu="matMenu" class="dropdown-menu">
     <div class="filter-input-div" (click)="$event.stopPropagation();">
       <input matInput (keyup)="applySearch($event)" [(ngModel)]="filterValue" placeholder="Search">
       <mat-icon *ngIf="filterValue.length === 0" class="input-icon">search</mat-icon>

@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import * as _ from 'lodash';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 // import { FormControl } from '@angular/forms';
@@ -21,6 +21,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
   @Input() icon: string = '';
   @Input() limit: number = Number.MAX_VALUE;
   @Input() showBadge: boolean = false;
+  @Input() datasetChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
 
 	public searchableData: KeyValue<string, string>[] = [];
 	public filterValue: string = '';
@@ -36,6 +37,19 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     
 	ngOnInit() {
 		this.searchableData = this.dataset;
+
+    this.datasetChanged$?.pipe(
+      takeUntil(this.unsubscribe$),
+      tap((updatedDataset) => {
+        this.searchableData = [...updatedDataset];
+        this.dataset = [...updatedDataset];
+        this.selectedOptions = [];
+        this.selectAll = false;
+        this.dropdownSelectionChange.emit([]);
+      })
+    ).subscribe();
+
+    console.log(this.searchableData)
 	}
 
 	ngOnDestroy(): void {

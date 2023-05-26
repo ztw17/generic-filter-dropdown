@@ -116,3 +116,7 @@ input {
 .dropdown-trigger-button:hover .button-icon{
   color: whitesmoke;
 }
+
+::ng-deep .dropdown-menu.mat-mdc-menu-panel {
+  max-height: 300px !important;
+}

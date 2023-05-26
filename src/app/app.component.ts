@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -52,6 +53,11 @@ export class AppComponent {
 		{key: 'rock', value: 'Rock'},
 		{key: 'rb', value: 'R&B'}
 	];
+	public datasetOptions: string[] = ['Foods', 'Composers', 'Cities', 'Music Genres'];
+	public selectedDataset: KeyValue<string, string>[] = [];
+	public selectedDatasetLabel: string = '';
+	public datasetChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
+	public datasetIcon: string = '';
 
 	public updateSelectedItemsOne(options: KeyValue<string, string>[]): void {
 		this.firstOptions = options;
@@ -68,11 +74,44 @@ export class AppComponent {
 	public updateSelectedItemsFour(options: KeyValue<string, string>[]): void {
 		this.fourthOptions = options;
 	}
-	public remove(option: KeyValue<string, string>): void {
-		const index = this.citiesDataset.indexOf(option);
 
-		if (index >= 0) {
-			this.citiesDataset.splice(index, 1)
+	public selectDataset(value: string): void {
+		switch (value) {
+			case 'Foods':
+				this.selectedDataset = this.foodsDataset;
+				this.datasetChanged$.next(this.foodsDataset);
+				this.selectedDatasetLabel = 'food';
+				this.datasetIcon = 'fastfood';
+				break;
+			case 'Composers':
+				this.selectedDataset = this.composersDataset;
+				this.datasetChanged$.next(this.composersDataset);
+				this.selectedDatasetLabel = 'composer';
+				this.datasetIcon = 'person';
+				break;
+			case 'Cities': 
+				this.selectedDataset = this.citiesDataset;
+				this.datasetChanged$.next(this.citiesDataset);
+				this.selectedDatasetLabel = 'city';
+				this.datasetIcon = 'location_city';
+				break;
+			case 'Music Genres':
+				this.selectedDataset = this.musicGenresDataset;
+				this.datasetChanged$.next(this.musicGenresDataset);
+				this.selectedDatasetLabel = 'music genre';
+				this.datasetIcon = 'library_music';
+				break;
+			default:
+				this.selectedDataset = [];
+				break;
 		}
 	}
+
+	// public remove(option: KeyValue<string, string>): void {
+	// 	const index = this.citiesDataset.indexOf(option);
+
+	// 	if (index >= 0) {
+	// 		this.citiesDataset.splice(index, 1)
+	// 	}
+	// }
 }

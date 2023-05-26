@@ -1,14 +1,14 @@
 <div class="parent-container">
   <div class="dropdowns-container">
     <div class="dropdown-wrapper">
-      <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value)">
+      <mat-radio-group aria-label="Select an option" (change)="selectDatasetOne($event.value)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
       <filter-dropdown 
-        [label]="selectedDatasetLabel"
-        [dataset]="selectedDataset"
+        [label]="selectedDatasetOneLabel"
+        [dataset]="selectedDatasetOne"
         (dropdownSelectionChange)="updateSelectedItemsOne($event)"
-        [datasetChanged$]="datasetChanged$">
+        [datasetChanged$]="datasetOneChanged$">
       </filter-dropdown>
       <div class="chips-container">
         <mat-chip-listbox>
@@ -51,17 +51,17 @@
       </div>
     </div>
     <div class="dropdown-wrapper">
-      <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value)">
+      <mat-radio-group aria-label="Select an option" (change)="selectDatasetTwo($event.value)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
       <filter-dropdown 
-        [label]="selectedDatasetLabel"
-        [dataset]="selectedDataset"
-        [icon]="datasetIcon"
+        [label]="selectedDatasetTwoLabel"
+        [dataset]="selectedDatasetTwo"
+        [icon]="datasetTwoIcon"
         [showBadge]="true"
         [limit]="3"
         (dropdownSelectionChange)="updateSelectedItemsFour($event)"
-        [datasetChanged$]="datasetChanged$"
+        [datasetChanged$]="datasetTwoChanged$"
         class="button-dropdown">
       </filter-dropdown>
       <!-- <div class="chips-container-margin">

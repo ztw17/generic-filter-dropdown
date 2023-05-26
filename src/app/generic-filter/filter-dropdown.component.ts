@@ -49,7 +49,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
       })
     ).subscribe();
 
-    console.log(this.searchableData)
+    console.log(this.searchableData.length > 0)
 	}
 
 	ngOnDestroy(): void {

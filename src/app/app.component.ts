@@ -56,13 +56,13 @@ export class AppComponent {
 	public datasetOptions: string[] = ['Foods', 'Composers', 'Cities', 'Music Genres'];
 	public selectedDatasetOne: KeyValue<string, string>[] = [];
 	public selectedDatasetTwo: KeyValue<string, string>[] = [];
-	public selectedDatasetOneLabel: string = '';
-	public selectedDatasetTwoLabel: string = '';
+	public selectedDatasetOneLabel = '';
+	public selectedDatasetTwoLabel = '';
 	public datasetOneChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
 	public datasetTwoChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
-	public datasetOneIcon: string = '';
-	public datasetTwoIcon: string = '';
-	public dropdownHidden: boolean = false;
+	public datasetOneIcon = '';
+	public datasetTwoIcon = '';
+	public dropdownHidden = false;
 
 	public updateSelectedItems(options: KeyValue<string, string>[], dropdownNumber: number): void {
 		switch (dropdownNumber) {
@@ -83,67 +83,67 @@ export class AppComponent {
 		}
 	}
 
-	public selectDatasetOne(value: string): void {
-		switch (value) {
-			case 'Foods':
-				this.selectedDatasetOne = this.foodsDataset;
-				this.datasetOneChanged$.next(this.foodsDataset);
-				this.selectedDatasetOneLabel = 'food';
-				this.datasetOneIcon = 'fastfood';
-				break;
-			case 'Composers':
-				this.selectedDatasetOne = this.composersDataset;
-				this.datasetOneChanged$.next(this.composersDataset);
-				this.selectedDatasetOneLabel = 'composer';
-				this.datasetOneIcon = 'person';
-				break;
-			case 'Cities': 
-				this.selectedDatasetOne = this.citiesDataset;
-				this.datasetOneChanged$.next(this.citiesDataset);
-				this.selectedDatasetOneLabel = 'city';
-				this.datasetOneIcon = 'location_city';
-				break;
-			case 'Music Genres':
-				this.selectedDatasetOne = this.musicGenresDataset;
-				this.datasetOneChanged$.next(this.musicGenresDataset);
-				this.selectedDatasetOneLabel = 'music genre';
-				this.datasetOneIcon = 'library_music';
-				break;
-			default:
-				this.selectedDatasetOne = [];
-				break;
-		}
-	}
-
-	public selectDatasetTwo(value: string): void {
-		switch (value) {
-			case 'Foods':
-				this.selectedDatasetTwo = this.foodsDataset;
-				this.datasetTwoChanged$.next(this.foodsDataset);
-				this.selectedDatasetTwoLabel = 'food';
-				this.datasetTwoIcon = 'fastfood';
-				break;
-			case 'Composers':
-				this.selectedDatasetTwo = this.composersDataset;
-				this.datasetTwoChanged$.next(this.composersDataset);
-				this.selectedDatasetTwoLabel = 'composer';
-				this.datasetTwoIcon = 'person';
-				break;
-			case 'Cities': 
-				this.selectedDatasetTwo = this.citiesDataset;
-				this.datasetTwoChanged$.next(this.citiesDataset);
-				this.selectedDatasetTwoLabel = 'city';
-				this.datasetTwoIcon = 'location_city';
-				break;
-			case 'Music Genres':
-				this.selectedDatasetTwo = this.musicGenresDataset;
-				this.datasetTwoChanged$.next(this.musicGenresDataset);
-				this.selectedDatasetTwoLabel = 'music genre';
-				this.datasetTwoIcon = 'library_music';
-				break;
-			default:
-				this.selectedDatasetTwo = [];
-				break;
+	public selectDataset(value: string, dropdownNumber: number): void {
+		if (dropdownNumber === 0) {
+			switch (value) {
+				case 'Foods':
+					this.selectedDatasetOne = this.foodsDataset;
+					this.datasetOneChanged$.next(this.foodsDataset);
+					this.selectedDatasetOneLabel = 'food';
+					this.datasetOneIcon = 'fastfood';
+					break;
+				case 'Composers':
+					this.selectedDatasetOne = this.composersDataset;
+					this.datasetOneChanged$.next(this.composersDataset);
+					this.selectedDatasetOneLabel = 'composer';
+					this.datasetOneIcon = 'person';
+					break;
+				case 'Cities': 
+					this.selectedDatasetOne = this.citiesDataset;
+					this.datasetOneChanged$.next(this.citiesDataset);
+					this.selectedDatasetOneLabel = 'city';
+					this.datasetOneIcon = 'location_city';
+					break;
+				case 'Music Genres':
+					this.selectedDatasetOne = this.musicGenresDataset;
+					this.datasetOneChanged$.next(this.musicGenresDataset);
+					this.selectedDatasetOneLabel = 'music genre';
+					this.datasetOneIcon = 'library_music';
+					break;
+				default:
+					this.selectedDatasetOne = [];
+					break;
+			}
+		} else if (dropdownNumber === 1 ) {
+			switch (value) {
+				case 'Foods':
+					this.selectedDatasetTwo = this.foodsDataset;
+					this.datasetTwoChanged$.next(this.foodsDataset);
+					this.selectedDatasetTwoLabel = 'food';
+					this.datasetTwoIcon = 'fastfood';
+					break;
+				case 'Composers':
+					this.selectedDatasetTwo = this.composersDataset;
+					this.datasetTwoChanged$.next(this.composersDataset);
+					this.selectedDatasetTwoLabel = 'composer';
+					this.datasetTwoIcon = 'person';
+					break;
+				case 'Cities': 
+					this.selectedDatasetTwo = this.citiesDataset;
+					this.datasetTwoChanged$.next(this.citiesDataset);
+					this.selectedDatasetTwoLabel = 'city';
+					this.datasetTwoIcon = 'location_city';
+					break;
+				case 'Music Genres':
+					this.selectedDatasetTwo = this.musicGenresDataset;
+					this.datasetTwoChanged$.next(this.musicGenresDataset);
+					this.selectedDatasetTwoLabel = 'music genre';
+					this.datasetTwoIcon = 'library_music';
+					break;
+				default:
+					this.selectedDatasetTwo = [];
+					break;
+			}
 		}
 	}
 

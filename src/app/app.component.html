@@ -2,7 +2,7 @@
   <div class="dropdowns-container">
     <div class="dropdown-wrapper">
       <div class="select-dataset-text">Select a dataset</div>
-      <mat-radio-group aria-label="Select an option" (change)="selectDatasetOne($event.value)">
+      <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 0)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
       <filter-dropdown 
@@ -53,7 +53,7 @@
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
       <div class="select-dataset-text">Select a dataset</div>
-      <mat-radio-group aria-label="Select an option" (change)="selectDatasetTwo($event.value)">
+      <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 1)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
       <filter-dropdown 

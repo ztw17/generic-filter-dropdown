@@ -15,17 +15,17 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 export class FilterDropdownComponent implements OnInit, OnDestroy {
   @Output() dropdownSelectionChange: EventEmitter<KeyValue<string, string>[]> = new EventEmitter<KeyValue<string, string>[]>();
   
-  @Input() label: string = '';
+  @Input() label = '';
   @Input() dataset: KeyValue<string, string>[] = [];
-  @Input() searchOnly: boolean = false;
-  @Input() icon: string = '';
+  @Input() searchOnly = false;
+  @Input() icon = '';
   @Input() limit: number = Number.MAX_VALUE;
-  @Input() showBadge: boolean = false;
+  @Input() showBadge = false;
   @Input() datasetChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
 
 	public searchableData: KeyValue<string, string>[] = [];
-	public filterValue: string = '';
-	public selectAll: boolean = false;
+	public filterValue = '';
+	public selectAll = false;
 	public selectedOptions: KeyValue<string, string>[] = [];
 	public displayedOptions: KeyValue<string, string>[] = [];
   public NUM_MAX_VALUE = Number.MAX_VALUE;
@@ -85,10 +85,10 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 
       _.each(this.dataset, data => {
 
-        const isCurrentlyDisplayed: boolean = !!_.find(this.searchableData, sd => this.isKeyValueEqual(sd, data));
+        const isCurrentlyDisplayed = !!_.find(this.searchableData, sd => this.isKeyValueEqual(sd, data));
         if (isCurrentlyDisplayed) {
 
-          const isCurrentlyDisplayedAndChecked: boolean = !!_.find(values, v => this.isKeyValueEqual(v, data));
+          const isCurrentlyDisplayedAndChecked = !!_.find(values, v => this.isKeyValueEqual(v, data));
           if (!isCurrentlyDisplayedAndChecked) {
             return;
           }

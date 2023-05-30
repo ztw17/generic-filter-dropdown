@@ -1,13 +1,14 @@
 <div class="parent-container">
   <div class="dropdowns-container">
     <div class="dropdown-wrapper">
+      <div class="select-dataset-text">Select a dataset</div>
       <mat-radio-group aria-label="Select an option" (change)="selectDatasetOne($event.value)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
       <filter-dropdown 
         [label]="selectedDatasetOneLabel"
         [dataset]="selectedDatasetOne"
-        (dropdownSelectionChange)="updateSelectedItemsOne($event)"
+        (dropdownSelectionChange)="updateSelectedItems($event, 0)"
         [datasetChanged$]="datasetOneChanged$">
       </filter-dropdown>
       <div class="chips-container">
@@ -18,12 +19,12 @@
         </mat-chip-listbox>
       </div>
     </div>
-    <div class="dropdown-wrapper">
+    <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
       <filter-dropdown 
         label="composer"
         [dataset]="composersDataset"
         [searchOnly]="true"
-        (dropdownSelectionChange)="updateSelectedItemsTwo($event)">
+        (dropdownSelectionChange)="updateSelectedItems($event, 1)">
       </filter-dropdown>
       <div class="chips-container">
         <mat-chip-listbox>
@@ -33,13 +34,13 @@
         </mat-chip-listbox>
       </div>
     </div>
-    <div class="dropdown-wrapper">
+    <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
       <filter-dropdown 
         label="genre"
         [dataset]="musicGenresDataset"
         icon="library_music"
         [showBadge]="true"
-        (dropdownSelectionChange)="updateSelectedItemsThree($event)"
+        (dropdownSelectionChange)="updateSelectedItems($event, 2)"
         class="button-dropdown">
       </filter-dropdown>
       <div class="chips-container-margin">
@@ -50,7 +51,8 @@
         </mat-chip-listbox>
       </div>
     </div>
-    <div class="dropdown-wrapper">
+    <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
+      <div class="select-dataset-text">Select a dataset</div>
       <mat-radio-group aria-label="Select an option" (change)="selectDatasetTwo($event.value)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
@@ -60,7 +62,7 @@
         [icon]="datasetTwoIcon"
         [showBadge]="true"
         [limit]="3"
-        (dropdownSelectionChange)="updateSelectedItemsFour($event)"
+        (dropdownSelectionChange)="updateSelectedItems($event, 3)"
         [datasetChanged$]="datasetTwoChanged$"
         class="button-dropdown">
       </filter-dropdown>

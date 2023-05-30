@@ -62,21 +62,25 @@ export class AppComponent {
 	public datasetTwoChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
 	public datasetOneIcon: string = '';
 	public datasetTwoIcon: string = '';
+	public dropdownHidden: boolean = false;
 
-	public updateSelectedItemsOne(options: KeyValue<string, string>[]): void {
-		this.firstOptions = options;
-	}
-
-	public updateSelectedItemsTwo(options: KeyValue<string, string>[]): void {
-		this.secondOptions = options;
-	}
-
-	public updateSelectedItemsThree(options: KeyValue<string, string>[]): void {
-		this.thirdOptions = options;
-	}
-
-	public updateSelectedItemsFour(options: KeyValue<string, string>[]): void {
-		this.fourthOptions = options;
+	public updateSelectedItems(options: KeyValue<string, string>[], dropdownNumber: number): void {
+		switch (dropdownNumber) {
+			case 0:
+				this.firstOptions = options;
+				break;
+			case 1:
+				this.secondOptions = options;
+				break;
+			case 2:
+				this.thirdOptions = options;
+				break;
+			case 3:
+				this.fourthOptions = options;
+				break;
+			default:
+				break;
+		}
 	}
 
 	public selectDatasetOne(value: string): void {

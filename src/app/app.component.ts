@@ -53,7 +53,17 @@ export class AppComponent {
 		{key: 'rock', value: 'Rock'},
 		{key: 'rb', value: 'R&B'}
 	];
-	public datasetOptions: string[] = ['Foods', 'Composers', 'Cities', 'Music Genres'];
+	public nationalParksDataset: KeyValue<string, string>[] = [
+		{key: 'blackCanyon', value: 'Black Canyon'},
+		{key: 'glacier', value: 'Glacier'},
+		{key: 'grandCanyon', value: 'Grand Canyon'},
+		{key: 'grandTeton', value: 'Grand Teton'},
+		{key: 'olympic', value: 'Olympic'},
+		{key: 'redWood', value: 'Red Wood'},
+		{key: 'rockyMountain', value: 'Rocky Mountain'},
+		{key: 'sequoia', value: 'Sequoia'}
+	];
+	public datasetOptions: string[] = ['Cities', 'Composers', 'Foods', 'Music Genres', 'National Parks'];
 	public selectedDatasetOne: KeyValue<string, string>[] = [];
 	public selectedDatasetTwo: KeyValue<string, string>[] = [];
 	public selectedDatasetOneLabel = '';
@@ -86,11 +96,11 @@ export class AppComponent {
 	public selectDataset(value: string, dropdownNumber: number): void {
 		if (dropdownNumber === 0) {
 			switch (value) {
-				case 'Foods':
-					this.selectedDatasetOne = this.foodsDataset;
-					this.datasetOneChanged$.next(this.foodsDataset);
-					this.selectedDatasetOneLabel = 'food';
-					this.datasetOneIcon = 'fastfood';
+				case 'Cities': 
+					this.selectedDatasetOne = this.citiesDataset;
+					this.datasetOneChanged$.next(this.citiesDataset);
+					this.selectedDatasetOneLabel = 'city';
+					this.datasetOneIcon = 'location_city';
 					break;
 				case 'Composers':
 					this.selectedDatasetOne = this.composersDataset;
@@ -98,11 +108,11 @@ export class AppComponent {
 					this.selectedDatasetOneLabel = 'composer';
 					this.datasetOneIcon = 'person';
 					break;
-				case 'Cities': 
-					this.selectedDatasetOne = this.citiesDataset;
-					this.datasetOneChanged$.next(this.citiesDataset);
-					this.selectedDatasetOneLabel = 'city';
-					this.datasetOneIcon = 'location_city';
+				case 'Foods':
+					this.selectedDatasetOne = this.foodsDataset;
+					this.datasetOneChanged$.next(this.foodsDataset);
+					this.selectedDatasetOneLabel = 'food';
+					this.datasetOneIcon = 'fastfood';
 					break;
 				case 'Music Genres':
 					this.selectedDatasetOne = this.musicGenresDataset;
@@ -110,17 +120,23 @@ export class AppComponent {
 					this.selectedDatasetOneLabel = 'music genre';
 					this.datasetOneIcon = 'library_music';
 					break;
+				case 'National Parks':
+					this.selectedDatasetOne = this.nationalParksDataset;
+					this.datasetOneChanged$.next(this.nationalParksDataset);
+					this.selectedDatasetOneLabel = 'national park';
+					this.datasetOneIcon = 'landscape';
+					break;
 				default:
 					this.selectedDatasetOne = [];
 					break;
 			}
-		} else if (dropdownNumber === 1 ) {
+		} else if (dropdownNumber === 1) {
 			switch (value) {
-				case 'Foods':
-					this.selectedDatasetTwo = this.foodsDataset;
-					this.datasetTwoChanged$.next(this.foodsDataset);
-					this.selectedDatasetTwoLabel = 'food';
-					this.datasetTwoIcon = 'fastfood';
+				case 'Cities': 
+					this.selectedDatasetTwo = this.citiesDataset;
+					this.datasetTwoChanged$.next(this.citiesDataset);
+					this.selectedDatasetTwoLabel = 'city';
+					this.datasetTwoIcon = 'location_city';
 					break;
 				case 'Composers':
 					this.selectedDatasetTwo = this.composersDataset;
@@ -128,17 +144,23 @@ export class AppComponent {
 					this.selectedDatasetTwoLabel = 'composer';
 					this.datasetTwoIcon = 'person';
 					break;
-				case 'Cities': 
-					this.selectedDatasetTwo = this.citiesDataset;
-					this.datasetTwoChanged$.next(this.citiesDataset);
-					this.selectedDatasetTwoLabel = 'city';
-					this.datasetTwoIcon = 'location_city';
+				case 'Foods':
+					this.selectedDatasetTwo = this.foodsDataset;
+					this.datasetTwoChanged$.next(this.foodsDataset);
+					this.selectedDatasetTwoLabel = 'food';
+					this.datasetTwoIcon = 'fastfood';
 					break;
 				case 'Music Genres':
 					this.selectedDatasetTwo = this.musicGenresDataset;
 					this.datasetTwoChanged$.next(this.musicGenresDataset);
 					this.selectedDatasetTwoLabel = 'music genre';
 					this.datasetTwoIcon = 'library_music';
+					break;
+				case 'National Parks':
+					this.selectedDatasetTwo = this.nationalParksDataset;
+					this.datasetTwoChanged$.next(this.nationalParksDataset);
+					this.selectedDatasetTwoLabel = 'national park';
+					this.datasetTwoIcon = 'landscape';
 					break;
 				default:
 					this.selectedDatasetTwo = [];

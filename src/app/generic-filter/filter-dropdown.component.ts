@@ -75,7 +75,6 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
       this.selectedOptions = [];
       this.displayedOptions = [];
     }
-
     this.dropdownSelectionChange.emit(this.selectedOptions);
   }
 
@@ -84,7 +83,6 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
       const checkedItems: KeyValue<string, string>[] = [];
 
       _.each(this.dataset, data => {
-
         const isCurrentlyDisplayed = !!_.find(this.searchableData, sd => this.isKeyValueEqual(sd, data));
         if (isCurrentlyDisplayed) {
 
@@ -96,14 +94,12 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
           checkedItems.push(data);
         }
       });
-
       this.selectedOptions = checkedItems;
       this.displayedOptions = checkedItems;
     } else {
       this.selectedOptions = values;
       this.displayedOptions = values;
     }
-
     this.dropdownSelectionChange.emit(this.selectedOptions);
 
     this.selectAll = this.dataset.length === this.selectedOptions.length;
@@ -122,7 +118,6 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     } else {
       this.selectedOptions.push(item);
     }
-
     this.dropdownSelectionChange.emit(this.selectedOptions);
 
     this.selectAll = this.dataset.length === this.selectedOptions.length;

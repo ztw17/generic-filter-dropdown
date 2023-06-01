@@ -7,14 +7,15 @@
 .dropdowns-container {
 	height: 100%;
 	display: flex;
-	align-items: center;
 	justify-content: center;
 }
 
 .dropdown-wrapper {
-	margin: 0 12px;
+	padding: 18px;
+	margin: 6px;
 	max-width: 230px;
-	height: 25%;
+	border: 1px solid gray;
+	border-radius: 10px;
 }
 
 .button-dropdown {
@@ -38,4 +39,5 @@
 	font-size: 16px;
 	font-weight: 600;
 	margin-bottom: 10px;
+	text-align: center;
 }

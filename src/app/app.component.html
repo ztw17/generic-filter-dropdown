@@ -1,6 +1,7 @@
 <div class="parent-container">
   <div class="dropdowns-container">
     <div class="dropdown-wrapper">
+      <h4>Filter dropdown with search and select all functionality</h4>
       <div class="select-dataset-text">Select a dataset</div>
       <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 0)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
@@ -20,6 +21,7 @@
       </div>
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
+      <h4>Filter dropdown with only search</h4>
       <filter-dropdown 
         label="composer"
         [dataset]="composersDataset"
@@ -35,6 +37,7 @@
       </div>
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
+      <h4>Filter dropdown triggered by button with search and select all functionality</h4>
       <filter-dropdown 
         label="genre"
         [dataset]="musicGenresDataset"
@@ -52,6 +55,7 @@
       </div>
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
+      <h4>Filter dropdown triggered by button with search and selection limit functionality</h4>
       <div class="select-dataset-text">Select a dataset</div>
       <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 1)">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>

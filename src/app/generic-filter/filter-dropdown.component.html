@@ -4,7 +4,8 @@
 
 <ng-template #searchOnlyStyle>
   <mat-form-field class="dropdown-wrapper">
-    <mat-label>Select {{label}}s</mat-label>
+    <mat-label *ngIf="label !== 'city'">Select {{label}}s</mat-label>
+    <mat-label *ngIf="label === 'city'">Select cities</mat-label>
     <mat-select 
       multiple
       [(ngModel)]="displayedOptions"
@@ -25,7 +26,8 @@
 
 <ng-template #searchAndSelectStyle>
   <mat-form-field class="dropdown-wrapper" *ngIf="label !== ''">
-    <mat-label>Select {{label}}s</mat-label>
+    <mat-label *ngIf="label !== 'city'">Select {{label}}s</mat-label>
+    <mat-label *ngIf="label === 'city'">Select cities</mat-label>
     <mat-select 
       multiple
       [(ngModel)]="displayedOptions"

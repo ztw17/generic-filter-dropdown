@@ -92,7 +92,11 @@ input {
   margin-left: 10px;
 }
 
-.checkbox-color {
+.checkbox-unchecked-color {
+  color: rgba(0,0,0,.54);
+}
+
+.checkbox-checked-color {
   color: #3f51b5;
 }
 

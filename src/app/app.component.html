@@ -56,12 +56,19 @@
       <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 1)" class="radio-buttons-container">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
+      <div *ngIf="selectedDatasetTwoLabel">
+        <div class="select-dataset-text">Select a limit</div>
+        <mat-radio-group aria-label="Select a limit" (change)="selectLimit($event.value)">
+          <mat-radio-button *ngFor="let option of limitOptions" [value]="option">{{option}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
       <filter-dropdown 
+        *ngIf="selectedLimit > 0"
         [label]="selectedDatasetTwoLabel"
         [dataset]="selectedDatasetTwo"
         [icon]="datasetTwoIcon"
         [showBadge]="true"
-        [limit]="3"
+        [limit]="selectedLimit"
         (dropdownSelectionChange)="updateSelectedItems($event, 3)"
         [datasetChanged$]="datasetTwoChanged$"
         class="button-dropdown">

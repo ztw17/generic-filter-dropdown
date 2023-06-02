@@ -1,10 +1,8 @@
 import { KeyValue } from '@angular/common';
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject, takeUntil, tap } from 'rxjs';
 import * as _ from 'lodash';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-// import { FormControl } from '@angular/forms';
-// import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'filter-dropdown',
@@ -12,7 +10,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
   styleUrls: ['./filter-dropdown.component.scss'],
 })
 
-export class FilterDropdownComponent implements OnInit, OnDestroy {
+export class FilterDropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Output() dropdownSelectionChange: EventEmitter<KeyValue<string, string>[]> = new EventEmitter<KeyValue<string, string>[]>();
   
   @Input() label = '';
@@ -28,14 +26,14 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
 	public selectAll = false;
 	public selectedOptions: KeyValue<string, string>[] = [];
 	public displayedOptions: KeyValue<string, string>[] = [];
+  public limitTooltip = '';
   public NUM_MAX_VALUE = Number.MAX_VALUE;
-  // public colorControl = new FormControl('primary' as ThemePalette);
 
 	private unsubscribe$: Subject<void> = new Subject<void>();
 
 	constructor() { }
     
-	ngOnInit() {
+	ngOnInit(): void {
 		this.searchableData = this.dataset;
 
     this.datasetChanged$?.pipe(
@@ -50,23 +48,35 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     ).subscribe();
 	}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['limit']) {
+      this.selectedOptions = [];
+
+      if (this.limit !== 1) {
+        this.limitTooltip = `You can select up to ${this.limit} options`;
+      } else {
+        this.limitTooltip = `You can select up to ${this.limit} option`;
+      }
+    }
+  }
+
 	ngOnDestroy(): void {
 		this.unsubscribe$.next();
 		this.unsubscribe$.complete();
 	}
 
-	public applySearch(event: KeyboardEvent) {
+	public applySearch(event: KeyboardEvent): void {
 		const target = event.target as HTMLInputElement;
     this.filterValue = _.toLower(_.trimStart(target?.value));
     this.searchableData = _.filter([...this.dataset], data => _.includes(_.toLower(data.value), this.filterValue));
   }
 
-  public clearSearch(input: string) {
+  public clearSearch(input: string): void {
     this.filterValue = _.toLower(_.trimStart(input));
     this.searchableData = _.filter([...this.dataset], data => _.includes(_.toLower(data.value), this.filterValue));
   }
 
-	public selectAllToggle(event: MatSlideToggleChange) {
+	public selectAllToggle(event: MatSlideToggleChange): void {
     this.selectAll = event.checked;
     if (this.selectAll) {
       this.selectedOptions = [...this.dataset];
@@ -78,7 +88,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     this.dropdownSelectionChange.emit(this.selectedOptions);
   }
 
-	public selectionChange(values: KeyValue<string, string>[]) {
+	public selectionChange(values: KeyValue<string, string>[]): void {
     if (this.filterValue.length !== 0) {
       const checkedItems: KeyValue<string, string>[] = [];
 
@@ -109,7 +119,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     return _.includes(_.map(this.selectedOptions, so => so.key), option.key);
   }
 
-  public selectMenuItem(item: KeyValue<string, string>, event: any) {
+  public selectMenuItem(item: KeyValue<string, string>, event: any): void {
     event.stopPropagation();
 
     if (this.isSelected(item)) {
@@ -123,7 +133,7 @@ export class FilterDropdownComponent implements OnInit, OnDestroy {
     this.selectAll = this.dataset.length === this.selectedOptions.length;
   }
 
-  public menuOpened() {
+  public menuOpened(): void {
     if (this.limit && this.limit !== this.NUM_MAX_VALUE) {
       this.dataset = this.dataset;
       this.searchableData = this.dataset;

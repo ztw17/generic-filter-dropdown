@@ -13,7 +13,7 @@ export class AppComponent {
 	public secondOptions: KeyValue<string, string>[] = [];
 	public thirdOptions: KeyValue<string, string>[] = [];
 	public fourthOptions: KeyValue<string, string>[] = [];
-  public foodsDataset: KeyValue<string, string>[] = [
+  public fruitsDataset: KeyValue<string, string>[] = [
 		{key: 'apple', value: 'Apple'},
 		{key: 'banana', value: 'Banana'},
 		{key: 'blueberry', value: 'Blueberry'},
@@ -63,7 +63,8 @@ export class AppComponent {
 		{key: 'rockyMountain', value: 'Rocky Mountain'},
 		{key: 'sequoia', value: 'Sequoia'}
 	];
-	public datasetOptions: string[] = ['Cities', 'Composers', 'Foods', 'Music Genres', 'National Parks'];
+	public datasetOptions: string[] = ['Cities', 'Composers', 'Fruits', 'Music Genres', 'National Parks'];
+	public limitOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 	public selectedDatasetOne: KeyValue<string, string>[] = [];
 	public selectedDatasetTwo: KeyValue<string, string>[] = [];
 	public selectedDatasetOneLabel = '';
@@ -72,6 +73,7 @@ export class AppComponent {
 	public datasetTwoChanged$: Subject<KeyValue<string, string>[]> = new Subject<KeyValue<string, string>[]>();
 	public datasetOneIcon = '';
 	public datasetTwoIcon = '';
+	public selectedLimit = 0;
 	public dropdownHidden = false;
 
 	public updateSelectedItems(options: KeyValue<string, string>[], dropdownNumber: number): void {
@@ -108,10 +110,10 @@ export class AppComponent {
 					this.selectedDatasetOneLabel = 'composer';
 					this.datasetOneIcon = 'person';
 					break;
-				case 'Foods':
-					this.selectedDatasetOne = this.foodsDataset;
-					this.datasetOneChanged$.next(this.foodsDataset);
-					this.selectedDatasetOneLabel = 'food';
+				case 'Fruits':
+					this.selectedDatasetOne = this.fruitsDataset;
+					this.datasetOneChanged$.next(this.fruitsDataset);
+					this.selectedDatasetOneLabel = 'fruit';
 					this.datasetOneIcon = 'fastfood';
 					break;
 				case 'Music Genres':
@@ -144,10 +146,10 @@ export class AppComponent {
 					this.selectedDatasetTwoLabel = 'composer';
 					this.datasetTwoIcon = 'person';
 					break;
-				case 'Foods':
-					this.selectedDatasetTwo = this.foodsDataset;
-					this.datasetTwoChanged$.next(this.foodsDataset);
-					this.selectedDatasetTwoLabel = 'food';
+				case 'Fruits':
+					this.selectedDatasetTwo = this.fruitsDataset;
+					this.datasetTwoChanged$.next(this.fruitsDataset);
+					this.selectedDatasetTwoLabel = 'fruit';
 					this.datasetTwoIcon = 'fastfood';
 					break;
 				case 'Music Genres':
@@ -167,5 +169,10 @@ export class AppComponent {
 					break;
 			}
 		}
+	}
+
+	public selectLimit(limit: number): void {
+		this.selectedLimit = limit;
+		this.fourthOptions = [];
 	}
 }

@@ -12,13 +12,11 @@
         (dropdownSelectionChange)="updateSelectedItems($event, 0)"
         [datasetChanged$]="datasetOneChanged$">
       </filter-dropdown>
-      <div class="chips-container">
-        <mat-chip-listbox>
-          <div *ngFor="let option of firstOptions">
-            <mat-chip>{{option.value}}</mat-chip>
-          </div>
-        </mat-chip-listbox>
-      </div>
+      <mat-chip-listbox>
+        <div *ngFor="let option of firstOptions">
+          <mat-chip>{{option.value}}</mat-chip>
+        </div>
+      </mat-chip-listbox>
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
       <h4>Filter dropdown with only search</h4>
@@ -28,13 +26,11 @@
         [searchOnly]="true"
         (dropdownSelectionChange)="updateSelectedItems($event, 1)">
       </filter-dropdown>
-      <div class="chips-container">
-        <mat-chip-listbox>
-          <div *ngFor="let option of secondOptions">
-            <mat-chip>{{option.value}}</mat-chip>
-          </div>
-        </mat-chip-listbox>
-      </div>
+      <mat-chip-listbox>
+        <div *ngFor="let option of secondOptions">
+          <mat-chip>{{option.value}}</mat-chip>
+        </div>
+      </mat-chip-listbox>
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
       <h4>Filter dropdown triggered by button with search and select all functionality</h4>
@@ -57,7 +53,7 @@
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
       <h4>Filter dropdown triggered by button with search and selection limit functionality</h4>
       <div class="select-dataset-text">Select a dataset</div>
-      <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 1)">
+      <mat-radio-group aria-label="Select an option" (change)="selectDataset($event.value, 1)" class="radio-buttons-container">
         <mat-radio-button *ngFor="let option of datasetOptions" [value]="option">{{option}}</mat-radio-button>
       </mat-radio-group>
       <filter-dropdown 

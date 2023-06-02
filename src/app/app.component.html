@@ -19,7 +19,7 @@
       </mat-chip-listbox>
     </div>
     <div class="dropdown-wrapper" [class.hide]="dropdownHidden">
-      <h4>Filter dropdown with only search</h4>
+      <h4>Filter dropdown with only search functionality</h4>
       <filter-dropdown 
         label="composer"
         [dataset]="composersDataset"
@@ -66,16 +66,6 @@
         [datasetChanged$]="datasetTwoChanged$"
         class="button-dropdown">
       </filter-dropdown>
-      <!-- <div class="chips-container-margin">
-        <mat-chip-grid>
-          <mat-chip-row *ngFor="let option of fourthOptions" (removed)="remove(option)">
-            {{option.value}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-        </mat-chip-grid>
-      </div> -->
       <div class="chips-container-margin">
         <mat-chip-listbox>
           <div *ngFor="let option of fourthOptions">

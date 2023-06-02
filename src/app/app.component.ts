@@ -168,12 +168,4 @@ export class AppComponent {
 			}
 		}
 	}
-
-	// public remove(option: KeyValue<string, string>): void {
-	// 	const index = this.citiesDataset.indexOf(option);
-
-	// 	if (index >= 0) {
-	// 		this.citiesDataset.splice(index, 1)
-	// 	}
-	// }
 }
